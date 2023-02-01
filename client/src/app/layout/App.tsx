@@ -11,14 +11,16 @@ import "react-toastify/dist/ReactToastify.css";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../features/basket/BasketPage";
-import { useStoreContext } from "../context/StoreContext";
 import { getCookie } from "../util/util";
 import agent from "../api/agent";
 import LoadingComponent from "./LoadingComponent";
 import CheckoutPage from "../../features/checkout/CheckoutPage";
+import ContactPage from "../../features/contact/ContactPage";
+import { useAppDispatch } from "../store/configureStore";
+import { setBasket } from "../../features/basket/basketslice";
 
 function App() {
-  const {setBasket} = useStoreContext();
+  const dispatch = useAppDispatch();
   const [loading,setLoading] = useState(true);
 
 
@@ -26,13 +28,13 @@ function App() {
     const buyerId = getCookie("buyerId");
     if(buyerId){
       agent.Basket.get()
-        .then(basket => setBasket(basket))
+        .then(basket => dispatch(setBasket(basket)))
         .catch(error => console.log(error))
         .finally(() => setLoading(false));
     } else {
         setLoading(false);
     }
-  },[setBasket])
+  },[dispatch])
 
 
   const [darkMode,setDarkMode] = useState(false);
@@ -64,6 +66,7 @@ function App() {
         <Route path="/catalog/:id" component={ProductDetails}/>
         <Route path="/about" component={AboutPage}/>
         <Route path="/server-error" component={ServerError}/>
+        <Route path="/contact" component={ContactPage}/>
         <Route path="/basket" component={BasketPage}/>
         <Route path="/checkout" component={CheckoutPage}/>
         <Route component={NotFound}/>
