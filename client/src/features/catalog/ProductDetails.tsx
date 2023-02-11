@@ -21,7 +21,11 @@ export default function ProductDetails(){
         if(item) setQuantity(item.quantity);
         if(!product) dispatch(fetchProductAsync(parseInt(id)));
         
-    },[dispatch,id,item,product])
+    },[dispatch,id,product,item])
+
+  
+
+
 
     function handleInputChange(event: any){
         if(event.target.value >= 0){
