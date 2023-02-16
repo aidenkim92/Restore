@@ -7,8 +7,6 @@ interface Props{
 }
 
 export default function RadioButtonGroup({selectedValue,options, onChange }: Props) {
-    console.log(selectedValue);
-    console.log(options);
 
   return (
     <FormControl component="fieldset">
