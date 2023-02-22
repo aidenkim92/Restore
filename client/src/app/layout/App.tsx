@@ -18,6 +18,8 @@ import CheckoutPage from "../../features/checkout/CheckoutPage";
 import ContactPage from "../../features/contact/ContactPage";
 import { useAppDispatch } from "../store/configureStore";
 import { setBasket } from "../../features/basket/basketslice";
+import Login from "../../features/account/Login";
+import Register from "../../features/account/Register";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -68,6 +70,8 @@ function App() {
         <Route path="/server-error" component={ServerError}/>
         <Route path="/contact" component={ContactPage}/>
         <Route path="/basket" component={BasketPage}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
         <Route path="/checkout" component={CheckoutPage}/>
         <Route component={NotFound}/>
         </Switch>
