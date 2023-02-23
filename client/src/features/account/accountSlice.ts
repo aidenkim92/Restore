@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { FieldValues } from "react-hook-form";
 import agent from "../../app/api/agent";
 import { User } from "../../app/models/user";
 
@@ -10,7 +11,7 @@ const initialState: AccountState = {
     user: null
 }
 
-export const signInUser = createAsyncThunk<User,{data: FieldValues}>(
+export const signInUser = createAsyncThunk<User, FieldValues>(
     "account/signInUser",
     async (data, thunkAPI) => {
         try{

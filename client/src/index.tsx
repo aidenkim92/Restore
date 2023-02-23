@@ -1,25 +1,25 @@
 import ReactDOM from 'react-dom/client';
 import './app/layout/styles.css';
-import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
-import { Router } from 'react-router-dom';
-import {createBrowserHistory} from "history";
+import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store/configureStore';
+import { router } from './app/router/Routes';
+import React from 'react';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-export const history = createBrowserHistory();
 
 root.render(
-  <Router history={history}>
-      <Provider store={store}>
-        <App />
+  <React.StrictMode>
+    <Provider store={store}>
+          <RouterProvider router={router} />
       </Provider>
-  </Router>
+  </React.StrictMode>
+    
 );
 
 // If you want to start measuring performance in your app, pass a function
