@@ -14,11 +14,11 @@ const root = ReactDOM.createRoot(
 
 
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode> // this will load twice every time on dev Environment
     <Provider store={store}>
           <RouterProvider router={router} />
       </Provider>
-  </React.StrictMode>
+  //</React.StrictMode>
     
 );
 
