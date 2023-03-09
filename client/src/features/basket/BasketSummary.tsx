@@ -2,11 +2,18 @@ import { TableContainer, Paper, Table, TableBody, TableRow, TableCell } from "@m
 import { useAppSelector } from "../../app/store/configureStore";
 import { currencyFormat } from "../../app/util/util";
 
-export default function BasketSummary() {
+interface Props {
+    subtotal?: number;
+}
+
+export default function BasketSummary({subtotal}: Props) {
     const {basket} = useAppSelector(state => state.basket);
-    var subtotal = basket?.items.reduce((sum, item) => sum+ (item.price*item.quantity),0) ?? 0; // this means that if there is no value returned then assign 0
+
+    if(subtotal === undefined){
+        subtotal = basket?.items.reduce((sum, item) => sum+ (item.price*item.quantity),0) ?? 0; // this means that if there is no value returned then assign 0
+    }
     
-    const deliveryFee = subtotal > 100 ? 0: 20;
+    const deliveryFee = subtotal > 10000 ? 0: 500;
 
     return (
         <>
@@ -33,6 +40,7 @@ export default function BasketSummary() {
                     </TableBody>
                 </Table>
             </TableContainer>
+             
         </>
     )
 }
